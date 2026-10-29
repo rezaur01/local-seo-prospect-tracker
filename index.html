@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081120">
+  <title>Local SEO Prospect Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+  <script src="homepage-research.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Local SEO Prospect Tracker home">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Local SEO <strong>Prospect Tracker</strong></span>
+      </a>
+      <span class="stage-badge">PHASE 1</span>
+    </div>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">CONSULTING WORKSPACE</p>
+      <h1 id="page-title">Your next great client starts with good research.</h1>
+      <p class="intro-copy">Keep prospect details, useful observations, and outreach notes together in one simple place.</p>
+    </section>
+
+    <div id="storage-error" class="storage-error hidden" role="alert" aria-live="assertive"></div>
+
+    <section class="panel research-panel" aria-labelledby="homepage-research-title">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">PHASE 1 · PUBLIC WEBSITE EVIDENCE</p>
+          <h2 id="homepage-research-title">Homepage research preview</h2>
+        </div>
+      </div>
+      <p class="panel-description">Fetch a public homepage for review. The preview is not saved to a prospect and does not make SEO judgments.</p>
+      <form id="homepage-research-form" novalidate>
+        <div class="research-url-row">
+          <div class="field">
+            <label for="homepage-url">Business website URL</label>
+            <input id="homepage-url" name="url" type="url" maxlength="2048" placeholder="https://example.com" autocomplete="url" inputmode="url" required aria-describedby="homepage-url-help homepage-research-message">
+            <span id="homepage-url-help" class="field-help">Only the homepage is checked. Do not enter a GBP link in this phase.</span>
+          </div>
+          <button class="button button-primary" id="homepage-research-button" type="submit">Research Homepage</button>
+        </div>
+      </form>
+      <div id="homepage-research-message" class="research-message" role="status" aria-live="polite"></div>
+      <section id="homepage-research-result" class="research-result hidden" aria-label="Homepage evidence preview"></section>
+    </section>
+
+    <div class="dashboard-grid">
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">PROSPECT DETAILS</p>
+            <h2 id="form-title">Add a prospect</h2>
+          </div>
+          <span class="heading-icon" aria-hidden="true">+</span>
+        </div>
+        <p class="panel-description">Fields marked <span class="required-mark">*</span> are required.</p>
+
+        <form id="prospect-form" novalidate>
+          <input id="prospect-id" name="prospectId" type="hidden">
+          <div class="form-grid">
+            <div class="field field-full">
+              <label for="business-name">Business name <span class="required-mark">*</span></label>
+              <input id="business-name" name="businessName" type="text" maxlength="120" autocomplete="organization" required>
+              <span class="field-error" id="business-name-error"></span>
+            </div>
+            <div class="field">
+              <label for="niche">Niche / industry</label>
+              <input id="niche" name="niche" type="text" maxlength="100" placeholder="e.g. Dentist">
+            </div>
+            <div class="field">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="url" maxlength="2048" placeholder="https://example.com" inputmode="url">
+              <span class="field-error" id="website-error"></span>
+            </div>
+            <div class="field">
+              <label for="location">Location</label>
+              <input id="location" name="location" type="text" maxlength="120" placeholder="City, region">
+            </div>
+            <div class="field">
+              <label for="contact-details">Contact details</label>
+              <input id="contact-details" name="contactDetails" type="text" maxlength="160" placeholder="Name, email, or phone">
+            </div>
+            <div class="field">
+              <label for="outreach-status">Outreach status</label>
+              <select id="outreach-status" name="outreachStatus">
+                <option>Not contacted</option>
+                <option>Contacted</option>
+                <option>Follow up</option>
+                <option>Not a fit</option>
+              </select>
+            </div>
+            <div class="field field-full">
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" rows="3" maxlength="1500" placeholder="Follow-up reminders or other context"></textarea>
+            </div>
+          </div>
+          <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
+          <div class="form-actions">
+            <button class="button button-primary" id="save-button" type="submit">Save prospect</button>
+            <button class="button button-secondary hidden" id="cancel-edit-button" type="button">Cancel edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel list-panel" aria-labelledby="list-title">
+        <div class="panel-heading list-heading">
+          <div>
+            <p class="eyebrow">YOUR PIPELINE</p>
+            <h2 id="list-title">Saved prospects <span class="count-pill" id="prospect-count">0</span></h2>
+          </div>
+        </div>
+        <p class="panel-description">Your records are saved in this browser on this device.</p>
+        <div class="list-tools" aria-label="Search, filter, and export prospects">
+          <div class="field search-field">
+            <label for="prospect-search">Search prospects</label>
+            <input id="prospect-search" type="search" placeholder="Name, website, niche, or location" autocomplete="off">
+          </div>
+          <div class="field filter-field">
+            <label for="status-filter">Outreach status</label>
+            <select id="status-filter">
+              <option value="">All statuses</option>
+              <option>Not contacted</option>
+              <option>Contacted</option>
+              <option>Follow up</option>
+              <option>Not a fit</option>
+            </select>
+          </div>
+          <button class="button button-primary export-button" id="export-button" type="button">Export CSV</button>
+        </div>
+        <div id="prospect-list" class="prospect-list" aria-live="polite"></div>
+      </section>
+    </div>
+    <footer class="page-footer"><span class="footer-dot" aria-hidden="true"></span> Private to this browser · Stored on this device</footer>
+  </main>
+  <dialog id="finding-dialog" class="finding-dialog" aria-labelledby="finding-dialog-title">
+    <form id="finding-form" novalidate>
+      <input id="finding-id" type="hidden">
+      <input id="finding-prospect-id" type="hidden">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">RESEARCH FINDING</p>
+          <h2 id="finding-dialog-title">Add finding</h2>
+        </div>
+        <button class="dialog-close" id="close-finding-dialog" type="button" aria-label="Close finding form">×</button>
+      </div>
+      <p id="finding-business-name" class="dialog-business"></p>
+      <div class="form-grid">
+        <div class="field field-full">
+          <label for="finding-observation">Research observation</label>
+          <textarea id="finding-observation" rows="3" maxlength="1500" placeholder="What did you observe?"></textarea>
+        </div>
+        <div class="field field-full">
+          <label for="finding-implication">Potential implication</label>
+          <textarea id="finding-implication" rows="3" maxlength="1500" placeholder="Why might this matter to the business?"></textarea>
+        </div>
+        <div class="field field-full">
+          <label for="finding-next-action">Recommended next action</label>
+          <textarea id="finding-next-action" rows="3" maxlength="1500" placeholder="What should be checked or done next?"></textarea>
+        </div>
+        <div class="field field-full">
+          <label for="finding-evidence-url">Evidence URL</label>
+          <input id="finding-evidence-url" type="url" maxlength="2048" placeholder="https://source-of-your-observation.com" inputmode="url">
+          <span class="field-error" id="finding-evidence-url-error"></span>
+        </div>
+        <div class="field field-full">
+          <label for="finding-verification-status">Verification status</label>
+          <select id="finding-verification-status">
+            <option>Needs checking</option>
+            <option>Verified</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-message" id="finding-message" role="status" aria-live="polite"></div>
+      <div class="form-actions">
+        <button class="button button-primary" id="save-finding-button" type="submit">Save finding</button>
+        <button class="button button-secondary" id="cancel-finding-button" type="button">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
